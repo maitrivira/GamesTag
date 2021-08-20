@@ -1,0 +1,6 @@
+framework module Pods_dicodingSubmission2 {
+  umbrella header "Pods-dicodingSubmission2-umbrella.h"
+
+  export *
+  module * { export * }
+}
