@@ -10,7 +10,6 @@ import SDWebImageSwiftUI
 
 struct GamesDetail: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-//    var hero: Hero
     var game: Results
     var body: some View {
         ScrollView {

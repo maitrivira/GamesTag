@@ -9,7 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct GamesRow: View {
-//    var hero: Hero
     var game: Results
     var body: some View {
         HStack {
