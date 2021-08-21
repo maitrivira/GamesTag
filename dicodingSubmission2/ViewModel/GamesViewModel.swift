@@ -5,81 +5,37 @@
 //  Created by Maitri Vira on 17/08/21.
 //
 
-//import Foundation
-//
-//class GamesViewModel {
-//    private var apiServices = ApiServices()
-//    private var gamesData = [Results]()
-//    func fetchData(completion: @escaping () -> Void) {
-//        apiServices.getData { [weak self] (result) in
-//            switch result {
-//            case .success(let listOf):
-//                self?.gamesData = listOf.results
-//                completion()
-//            case .failure(let error):
-//                print("error: ", error)
-//            }
-//        }
-//    }
-//    func numberOfRowsInSection() -> Int {
-//        if gamesData.count != 0 {
-//            return gamesData.count
-//        }
-//        return 0
-//    }
-//    func cellForRowAt (indexPath: IndexPath) -> Results {
-//        return gamesData[indexPath.row]
-//    }
-//}
-
 import SwiftUI
-import Combine
 
-class GameViewModel: ObservableObject {
-    @Published var searchQuery = ""
-    var searchCancellable: AnyCancellable?
-
-    @Published var fetchedGames: [Results]?
-
-    init() {
-        searchCancellable = $searchQuery
-            .removeDuplicates()
-            .debounce(for: 0.6, scheduler: RunLoop.main)
-            .sink(receiveValue: { str in
-                if str == "" {
-                    self.fetchedGames = nil
-                } else {
-                    print(str)
-                    self.searchCharacter()
-                }
-            })
-    }
-
-    func searchCharacter() {
+class GameViewModel {
+    func downloadData(completion: @escaping (Result<GamesModel, Error>) -> Void) {
         let publicKey = "f5a9d29821874524a7c5e0f5db13ee14"
-        let searchKey = searchQuery.replacingOccurrences(of: " ", with: "%20")
-        let url = "https://api.rawg.io/api/games?search=\(searchKey)&key=\(publicKey)"
-        let session = URLSession(configuration: .default)
-        session.dataTask(with: URL(string: url)!) { (data, _, err) in
-            if let error = err {
-                print(error.localizedDescription)
-                return
-            }
-            guard let APIData = data else {
-                print("no data found")
+        let url = "https://api.rawg.io/api/games"
+        var components = URLComponents(string: url)!
+        components.queryItems = [
+            URLQueryItem(name: "key", value: publicKey)
+        ]
+        let request = URLRequest(url: components.url!)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data,
+                error == nil,
+                let response = response as? HTTPURLResponse,
+                response.statusCode >= 200 && response.statusCode < 300 else {
+                print("No Data Error Downloading")
                 return
             }
             do {
-                let games = try JSONDecoder().decode(GamesModel.self, from: APIData)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(GamesModel.self, from: data)
+                print("data apiservice", jsonData)
                 DispatchQueue.main.async {
-                    if self.fetchedGames == nil {
-                        self.fetchedGames = games.results
-                    }
+                    completion(.success(jsonData))
                 }
-            } catch {
-                print(error.localizedDescription)
+            } catch let error {
+                print("data error apiservice", error)
+                completion(.failure(error))
+
             }
-        }
-        .resume()
+        }.resume()
     }
 }
