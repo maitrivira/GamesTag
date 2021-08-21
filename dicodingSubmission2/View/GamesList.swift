@@ -10,17 +10,18 @@ import SwiftUI
 struct GamesList: View {
     @State var searchText = ""
     @State var isSearching = false
-    @EnvironmentObject var gameData: GameViewModel
+    @EnvironmentObject var gameData: ApiServices
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(searchText: $gameData.searchQuery, isSearching: $isSearching)
-                if let games = gameData.fetchedGames {
-                    if games.isEmpty {
-                        Text("No Results Found")
-                            .padding(.top, 20)
-                    } else {
-                        List(games) { game in
+                SearchBar(searchText: $searchText, isSearching: $isSearching)
+                if gameData.games.isEmpty {
+                    LoadingView()
+                } else {
+                    List {
+                        ForEach( gameData.games.filter {
+                            searchText.isEmpty || $0.name.lowercased().contains(searchText)
+                        }) { game in
                             ZStack {
                                 GamesRow(game: game)
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -29,20 +30,18 @@ struct GamesList: View {
                                 ) {
                                     EmptyView()
                                 }
-                                .buttonStyle(BorderlessButtonStyle())
+                                .buttonStyle(PlainButtonStyle())
                             }
+                            .listRowBackground(Color.clear)
                         }
-                        .listStyle(InsetListStyle())
-                        .padding(.top, 2)
                     }
-                } else {
-                    if gameData.searchQuery != "" {
-                        ProgressView()
-                            .padding(.top, 20)
-                    }
+                    .listStyle(PlainListStyle())
                 }
             }
-            .navigationBarTitle(Text("Pahlawan Indonesia"), displayMode: .inline)
+            .onAppear {
+               UITableViewCell.appearance().selectionStyle = .none
+            }
+            .navigationBarTitle(Text("Games List"), displayMode: .inline)
         }
     }
 }
@@ -57,10 +56,11 @@ struct SearchBar: View {
                     .padding(.leading, 35)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+                    .textCase(.lowercase)
             }
             .padding(10)
             .background(Color(.systemGray5))
-            .cornerRadius(18)
+            .cornerRadius(8)
             .padding(.horizontal)
             .onTapGesture {
                 isSearching = true
@@ -70,7 +70,9 @@ struct SearchBar: View {
                     Image(systemName: "magnifyingglass")
                     Spacer()
                     if isSearching {
-                        Button(action: { searchText = "" }, label: {
+                        Button(action: {
+                            searchText = ""
+                        }, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .padding(.vertical)
                         })
@@ -93,5 +95,16 @@ struct SearchBar: View {
             }
         }
         .padding(.top)
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            ProgressView()
+            Spacer()
+        }
+        .padding()
     }
 }

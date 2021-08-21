@@ -19,11 +19,21 @@ struct GamesRow: View {
                 .clipShape(Circle())
             VStack(alignment: .leading, spacing: 0) {
                 Text(game.name)
-                    .font(.system(size: 20))
-                Text(String(game.rating))
-                    .font(.system(size: 14))
-                    .lineLimit(3)
-                    .foregroundColor(.gray)
+                    .font(.title3)
+                    .bold()
+                Spacer()
+                    .frame(minHeight: 10, maxHeight: 10)
+                HStack {
+                    Text(game.released)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                    Spacer()
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 10))
+                    Text("\(String(game.rating))")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
             }
             .padding(.trailing, 28)
             .padding(.leading, 8)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var gameData = GameViewModel()
+    @StateObject var gameData = ApiServices()
     var body: some View {
         TabView {
             GamesList()
@@ -32,20 +32,6 @@ extension UINavigationController {
         standardApperance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationBar.standardAppearance = standardApperance
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
-    }
-}
-
-struct EmptyStateView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            Image(systemName: "doc.text.fill")
-                .font(.system(size: 85))
-                .padding(.bottom)
-            Text("No Data")
-            Spacer()
-        }
-        .padding()
     }
 }
 
