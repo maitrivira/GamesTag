@@ -27,7 +27,6 @@ class ApiServices {
             do {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(GamesModel.self, from: data)
-                print("data apiservice", jsonData)
                 DispatchQueue.main.async {
                     completion(.success(jsonData))
                 }
