@@ -1,4 +1,4 @@
-# SportTag - UIKit
+# GameTag - SwiftUI
 
 > **Note: This project is my final project for [Belajar Fundamental Aplikasi iOS](https://www.dicoding.com/academysubmissions/905872) course from [Dicoding](https://dicoding.com) and doesn't accept any pull requests or issues.**
 
