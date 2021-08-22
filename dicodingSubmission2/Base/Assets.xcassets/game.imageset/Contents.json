@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "game-console@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "game-console@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -6,7 +6,7 @@
 
 ## Screenshots
 
-| Splash Screen                                    | Home Screen                                  | Detail Screen                                    | About Screen                                   |
+| Home Screen                                    | Detail Screen                                  | About Screen                                    | Search Screen                                   |
 | ------------------------------------------------ | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
 | ![Home Screen](/Screenshots/Home-screen.png) | ![Detail Screen](/Screenshots/Detail-screen.png) | ![About Screen](/Screenshots/Profile-screen.png) | ![Search Screen](/Screenshots/Search-screen.png) |
 
@@ -14,7 +14,7 @@
 
 | Icon                                                                           | License                                                                                                                                                               |
 | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![Store](/dicodingSubmision2/Base/Assets.xcassets/game.imageset/game-console.png) | <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> |
+| ![Store](/dicodingSubmission2/Base/Assets.xcassets/game.imageset/game-console@2x.png) | <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> |
 
 ## 3rd Party Libraries
 
