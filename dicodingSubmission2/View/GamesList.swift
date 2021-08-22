@@ -10,7 +10,7 @@ import SwiftUI
 struct GamesList: View {
     @State var searchText = ""
     @State var isSearching = false
-    @EnvironmentObject var gameData: ApiServices
+    @EnvironmentObject var gameData: GameViewModel
     var body: some View {
         NavigationView {
             VStack {

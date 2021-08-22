@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var gameData = ApiServices()
+    @StateObject var gameData = GameViewModel()
     var body: some View {
         TabView {
             GamesList()

@@ -22,7 +22,7 @@ struct GamesDetail: View {
                     .bold()
                 WebImage(url: URL(string: game.backgroundImage))
                     .resizable()
-                    .frame(width: .infinity, height: 200, alignment: .center)
+                    .frame(height: 200, alignment: .center)
             }
             .padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -70,10 +70,10 @@ struct GamesDetail: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             self.mode.wrappedValue.dismiss()
-        }) {
+        }, label: {
             Image(systemName: "arrow.left")
                 .foregroundColor(Color.white)
-        })
+        }))
         .navigationBarTitle("Detail")
         .environment(\.locale, Locale(identifier: "id"))
     }
@@ -89,10 +89,8 @@ struct CardView: View {
                 .font(.footnote)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .padding(.top, 4)
-                .padding(.bottom, 4)
-                .padding(.leading, 2)
-                .padding(.trailing, 2)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 2)
                 .lineLimit(3)
         }
     }
