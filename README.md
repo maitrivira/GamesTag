@@ -1,8 +1,8 @@
 # SportTag - UIKit
 
-> **Note: This project is my final project for [Belajar Membuat Aplikasi iOS untuk Pemula](https://www.dicoding.com/academies/171) course from [Dicoding](https://dicoding.com) and doesn't accept any pull requests or issues.**
+> **Note: This project is my final project for [Belajar Fundamental Aplikasi iOS](https://www.dicoding.com/academysubmissions/905872) course from [Dicoding](https://dicoding.com) and doesn't accept any pull requests or issues.**
 
-> **Using UIKit, storyboard and xib, MVVM architecture pattern, closure, API, SkeletonView**
+> **Using SwiftUI, Concurrency, API, Progress View, Clean Code**
 
 ## Screenshots
 
@@ -14,9 +14,10 @@
 
 | Icon                                                                           | License                                                                                                                                                               |
 | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![Store](/dicodingSubmision1/Base/Assets.xcassets/ball.imageset/A6@2x.png) | <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> |
+| ![Store](/dicodingSubmision2/Base/Assets.xcassets/game.imageset/game-console.png) | <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> |
 
 ## 3rd Party Libraries
 
-- [SkeletonView](https://github.com/Juanpe/SkeletonView)
-- [Api](https://www.thesportsdb.com/api/v1/json/1/all_sports.php)
+- [Swiftlint](https://github.com/realm/SwiftLint)
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage)
+- [Api](https://api.rawg.io/api/games?key=f5a9d29821874524a7c5e0f5db13ee14)
