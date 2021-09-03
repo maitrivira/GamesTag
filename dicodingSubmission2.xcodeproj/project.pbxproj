@@ -19,7 +19,9 @@
 		B003A85B26CC0DA800CAE5D6 /* GamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003A85A26CC0DA800CAE5D6 /* GamesList.swift */; };
 		B003A86126CC0E9B00CAE5D6 /* GamesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003A86026CC0E9B00CAE5D6 /* GamesRow.swift */; };
 		B01B9CCB26CE8D7D00C0FB53 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B01B9CCA26CE8D7D00C0FB53 /* SDWebImageSwiftUI */; };
+		B0639D7526E2072700C4B40B /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0639D7426E2072700C4B40B /* Favorite.swift */; };
 		B07FED9A26CFF76F006A91D3 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07FED9926CFF76F006A91D3 /* ApiServices.swift */; };
+		B09FC9EC26E0D33500F8D50E /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09FC9EB26E0D33500F8D50E /* Favorites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +38,9 @@
 		B003A85826CC076D00CAE5D6 /* GamesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesDetail.swift; sourceTree = "<group>"; };
 		B003A85A26CC0DA800CAE5D6 /* GamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesList.swift; sourceTree = "<group>"; };
 		B003A86026CC0E9B00CAE5D6 /* GamesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRow.swift; sourceTree = "<group>"; };
+		B0639D7426E2072700C4B40B /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		B07FED9926CFF76F006A91D3 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
+		B09FC9EB26E0D33500F8D50E /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		DAAEF6854E29FE212F292180 /* Pods-dicodingSubmission2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dicodingSubmission2.debug.xcconfig"; path = "Target Support Files/Pods-dicodingSubmission2/Pods-dicodingSubmission2.debug.xcconfig"; sourceTree = "<group>"; };
 		DF700D2728EED27E3630DF15 /* Pods_dicodingSubmission2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dicodingSubmission2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +115,7 @@
 				B003A85826CC076D00CAE5D6 /* GamesDetail.swift */,
 				B003A85A26CC0DA800CAE5D6 /* GamesList.swift */,
 				B003A86026CC0E9B00CAE5D6 /* GamesRow.swift */,
+				B0639D7426E2072700C4B40B /* Favorite.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		B003A84F26CBF8B700CAE5D6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B09FC9EB26E0D33500F8D50E /* Favorites.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -286,8 +292,10 @@
 				B003A85726CC076000CAE5D6 /* About.swift in Sources */,
 				B003A85326CBFE2800CAE5D6 /* GamesModel.swift in Sources */,
 				B003A85B26CC0DA800CAE5D6 /* GamesList.swift in Sources */,
+				B09FC9EC26E0D33500F8D50E /* Favorites.swift in Sources */,
 				B003A85926CC076D00CAE5D6 /* GamesDetail.swift in Sources */,
 				B003A86126CC0E9B00CAE5D6 /* GamesRow.swift in Sources */,
+				B0639D7526E2072700C4B40B /* Favorite.swift in Sources */,
 				B003A83E26CBF73200CAE5D6 /* MainView.swift in Sources */,
 				B07FED9A26CFF76F006A91D3 /* ApiServices.swift in Sources */,
 				B003A85526CC052000CAE5D6 /* GamesViewModel.swift in Sources */,

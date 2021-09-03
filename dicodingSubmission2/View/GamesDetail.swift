@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct GamesDetail: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var favorites: Favorites
     var game: Results
     let columns = [
         GridItem(.adaptive(minimum: 100))
@@ -46,7 +47,7 @@ struct GamesDetail: View {
                     Text("Rating :")
                     Image(systemName: "star.fill")
                         .font(.system(size: 10))
-                    Text("\(String(game.rating)) out of 5g")
+                    Text("\(String(game.rating)) out of 5")
                 }
                 HStack {
                     Text("Released :")
@@ -68,12 +69,27 @@ struct GamesDetail: View {
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-            self.mode.wrappedValue.dismiss()
-        }, label: {
-            Image(systemName: "arrow.left")
-                .foregroundColor(Color.white)
-        }))
+        .navigationBarItems(
+            leading: Button(action: {
+                self.mode.wrappedValue.dismiss()
+            }, label: {
+                Image(systemName: "arrow.left")
+                    .foregroundColor(Color.white)
+            }),
+            trailing: Button(action: {
+                if favorites.contains(game) {
+                    favorites.remove(game)
+                } else {
+                    favorites.add(game)
+                }
+            }, label: {
+                if favorites.contains(game) {
+                    Image(systemName: "heart.fill").foregroundColor(Color.red)
+                } else {
+                    Image(systemName: "heart").foregroundColor(Color.white)
+                }
+            })
+        )
         .navigationBarTitle("Detail")
         .environment(\.locale, Locale(identifier: "id"))
     }

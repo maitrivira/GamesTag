@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ApiServices {
-    func downloadData(completion: @escaping (Result<GamesModel, Error>) -> Void) {
+    func downloadGames(completion: @escaping (Result<GamesModel, Error>) -> Void) {
         let publicKey = "f5a9d29821874524a7c5e0f5db13ee14"
         let url = "https://api.rawg.io/api/games"
         var components = URLComponents(string: url)!

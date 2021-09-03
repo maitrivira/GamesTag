@@ -32,3 +32,15 @@ struct Genres: Identifiable, Codable {
         case id, name
     }
 }
+
+let dummyData = [
+    Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),
+    Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),
+    Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),
+    Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),
+    Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: [])
+]
+
+let dummyGenre = [
+    Genres(id: 1, name: "Contoh")
+]

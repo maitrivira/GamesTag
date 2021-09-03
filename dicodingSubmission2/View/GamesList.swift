@@ -16,7 +16,23 @@ struct GamesList: View {
             VStack {
                 SearchBar(searchText: $searchText, isSearching: $isSearching)
                 if gameData.games.isEmpty {
-                    LoadingView()
+                    List {
+                        ForEach(dummyData) { data in
+                            ZStack {
+                                GamesRow(game: data)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                NavigationLink(destination:
+                                    GamesDetail(game: data)
+                                ) {
+                                    EmptyView()
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                            .listRowBackground(Color.clear)
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .redacted(reason: .placeholder)
                 } else {
                     List {
                         ForEach( gameData.games.filter {
@@ -39,7 +55,7 @@ struct GamesList: View {
                 }
             }
             .onAppear {
-               UITableViewCell.appearance().selectionStyle = .none
+                UITableViewCell.appearance().selectionStyle = .none
             }
             .navigationBarTitle(Text("Games List"), displayMode: .inline)
         }
@@ -95,16 +111,5 @@ struct SearchBar: View {
             }
         }
         .padding(.top)
-    }
-}
-
-struct LoadingView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            ProgressView()
-            Spacer()
-        }
-        .padding()
     }
 }

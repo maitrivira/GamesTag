@@ -32,6 +32,7 @@ struct About: View {
                     Spacer()
                 }
                 .padding(.top, 40)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
             .navigationBarTitle(Text("Profile"), displayMode: .inline)
         }

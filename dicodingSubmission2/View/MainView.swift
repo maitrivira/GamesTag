@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var gameData = GameViewModel()
+    @ObservedObject var favorites = Favorites()
     var body: some View {
         TabView {
             GamesList()
@@ -16,11 +17,16 @@ struct MainView: View {
                     Label("Games", systemImage: "gamecontroller.fill")
                 }
                 .environmentObject(gameData)
+            Favorite()
+                .tabItem {
+                    Label("Favorite", systemImage: "star.fill")
+                }
             About()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
+        .environmentObject(favorites)
     }
 }
 

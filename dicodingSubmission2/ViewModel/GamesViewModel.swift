@@ -14,7 +14,7 @@ class GameViewModel: ObservableObject {
         fetchData()
     }
     func fetchData() {
-        apiServices.downloadData { [weak self] (result) in
+        apiServices.downloadGames { [weak self] (result) in
             switch result {
             case .success(let listOf):
                 self?.games = listOf.results
@@ -22,5 +22,9 @@ class GameViewModel: ObservableObject {
                 print("error: ", error)
             }
         }
+    }
+    
+    func fetchDetail(name: String) {
+        
     }
 }
