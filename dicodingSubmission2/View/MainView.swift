@@ -19,7 +19,7 @@ struct MainView: View {
                 .environmentObject(gameData)
             Favorite()
                 .tabItem {
-                    Label("Favorite", systemImage: "star.fill")
+                    Label("Favorite", systemImage: "heart.fill")
                 }
             About()
                 .tabItem {

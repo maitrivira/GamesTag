@@ -33,7 +33,8 @@ struct GamesDetail: View {
                     .bold()
                 HStack {
                     ForEach(game.genres) { game in
-                        Text("  \(game.name)  ")
+                        Text(game.name)
+                            .padding(4)
                             .background(Color.init(red: 0.06, green: 0.50, blue: 1.00))
                             .foregroundColor(.white)
                             .cornerRadius(8)
@@ -102,11 +103,10 @@ struct CardView: View {
             let shape = RoundedRectangle(cornerRadius: 8)
             shape.fill().foregroundColor(Color.init(red: 0.06, green: 0.50, blue: 1.00))
             Text(content)
+                .padding(4)
                 .font(.footnote)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .padding(.vertical, 4)
-                .padding(.horizontal, 2)
                 .lineLimit(3)
         }
     }

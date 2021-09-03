@@ -29,7 +29,6 @@ struct About: View {
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .padding()
-                    Spacer()
                 }
                 .padding(.top, 40)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

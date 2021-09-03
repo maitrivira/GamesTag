@@ -23,8 +23,4 @@ class GameViewModel: ObservableObject {
             }
         }
     }
-    
-    func fetchDetail(name: String) {
-        
-    }
 }
