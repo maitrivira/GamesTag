@@ -8,24 +8,21 @@
 import SwiftUI
 
 struct GamesList: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var searchText = ""
     @State var isSearching = false
+    @State var showPageView = false
     @EnvironmentObject var gameData: GameViewModel
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(searchText: $searchText, isSearching: $isSearching)
+//                SearchBar(searchText: $searchText, isSearching: $isSearching)
                 if gameData.games.isEmpty {
                     List {
                         ForEach(dummyData) { data in
                             ZStack {
                                 GamesRow(game: data)
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                                NavigationLink(destination:
-                                    GamesDetail(game: data)
-                                ) {
-                                    EmptyView()
-                                }
                                 .buttonStyle(PlainButtonStyle())
                             }
                             .listRowBackground(Color.clear)
@@ -54,10 +51,17 @@ struct GamesList: View {
                     .listStyle(PlainListStyle())
                 }
             }
+            .background(Color("Navy"))
+            .navigationBarTitle(Text("Games List"), displayMode: .inline)
             .onAppear {
                 UITableViewCell.appearance().selectionStyle = .none
             }
-            .navigationBarTitle(Text("Games List"), displayMode: .inline)
+            .navigationBarItems(trailing:
+                NavigationLink(destination: About(edit: false), label: {
+                    Image(systemName: "person.fill")
+                        .foregroundColor(Color.white)
+                })
+            )
         }
     }
 }
@@ -110,6 +114,6 @@ struct SearchBar: View {
                 .animation(.spring())
             }
         }
-        .padding(.top)
+        .padding(.top, 10)
     }
 }

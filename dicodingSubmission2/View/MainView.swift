@@ -10,6 +10,9 @@ import SwiftUI
 struct MainView: View {
     @StateObject var gameData = GameViewModel()
     @ObservedObject var favorites = Favorites()
+    init() {
+        UITabBar.appearance().barTintColor = UIColor.init(named: "Navy")
+    }
     var body: some View {
         TabView {
             GamesList()
@@ -21,11 +24,12 @@ struct MainView: View {
                 .tabItem {
                     Label("Favorite", systemImage: "heart.fill")
                 }
-            About()
+            About(edit: false)
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
+        .accentColor(.white)
         .environmentObject(favorites)
     }
 }
@@ -34,7 +38,7 @@ extension UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         let standardApperance = UINavigationBarAppearance()
-        standardApperance.backgroundColor = UIColor(red: 0.00, green: 0.00, blue: 0.50, alpha: 1.00)
+        standardApperance.backgroundColor = UIColor(named: "Navy")
         standardApperance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationBar.standardAppearance = standardApperance
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)

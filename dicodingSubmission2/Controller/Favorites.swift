@@ -14,6 +14,30 @@ class Favorites: ObservableObject {
     init() {
         self.newData = []
     }
+    func addBio(name: String, job: String, desc: String) {
+        defaults.set(name, forKey: "name")
+        defaults.set(job, forKey: "job")
+        defaults.set(desc, forKey: "desc")
+        print("saved to userdefaults")
+    }
+    func getName() -> String {
+        guard let name = defaults.object(forKey: "name") as? String else {
+            return ""
+        }
+        return name
+    }
+    func getJob() -> String {
+        guard let job = defaults.object(forKey: "job") as? String else {
+            return ""
+        }
+        return job
+    }
+    func getDesc() -> String {
+        guard let desc = defaults.object(forKey: "desc") as? String else {
+            return ""
+        }
+        return desc
+    }
     func contains(_ game: Results) -> Bool {
         getData().contains { $0.id == game.id }
     }

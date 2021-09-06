@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct GamesDetail: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @GestureState private var dragOffset = CGSize.zero
     @EnvironmentObject var favorites: Favorites
     var game: Results
     let columns = [
@@ -34,8 +35,10 @@ struct GamesDetail: View {
                 HStack {
                     ForEach(game.genres) { game in
                         Text(game.name)
-                            .padding(4)
-                            .background(Color.init(red: 0.06, green: 0.50, blue: 1.00))
+                            .font(.footnote)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 4)
+                            .background(Color("Navy"))
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
@@ -93,6 +96,11 @@ struct GamesDetail: View {
         )
         .navigationBarTitle("Detail")
         .environment(\.locale, Locale(identifier: "id"))
+        .gesture(DragGesture().updating($dragOffset, body: { (value, _, _) in
+            if value.startLocation.x < 20 && value.translation.width > 100 {
+                self.mode.wrappedValue.dismiss()
+            }
+        }))
     }
 }
 
@@ -101,7 +109,7 @@ struct CardView: View {
     var body: some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 8)
-            shape.fill().foregroundColor(Color.init(red: 0.06, green: 0.50, blue: 1.00))
+            shape.fill().foregroundColor(Color("Navy"))
             Text(content)
                 .padding(4)
                 .font(.footnote)

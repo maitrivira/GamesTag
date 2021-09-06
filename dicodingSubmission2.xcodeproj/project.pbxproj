@@ -19,6 +19,7 @@
 		B003A85B26CC0DA800CAE5D6 /* GamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003A85A26CC0DA800CAE5D6 /* GamesList.swift */; };
 		B003A86126CC0E9B00CAE5D6 /* GamesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003A86026CC0E9B00CAE5D6 /* GamesRow.swift */; };
 		B01B9CCB26CE8D7D00C0FB53 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B01B9CCA26CE8D7D00C0FB53 /* SDWebImageSwiftUI */; };
+		B04DA25B26E6421A00843524 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DA25A26E6421A00843524 /* ImagePicker.swift */; };
 		B0639D7526E2072700C4B40B /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0639D7426E2072700C4B40B /* Favorite.swift */; };
 		B07FED9A26CFF76F006A91D3 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07FED9926CFF76F006A91D3 /* ApiServices.swift */; };
 		B09FC9EC26E0D33500F8D50E /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09FC9EB26E0D33500F8D50E /* Favorites.swift */; };
@@ -38,6 +39,7 @@
 		B003A85826CC076D00CAE5D6 /* GamesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesDetail.swift; sourceTree = "<group>"; };
 		B003A85A26CC0DA800CAE5D6 /* GamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesList.swift; sourceTree = "<group>"; };
 		B003A86026CC0E9B00CAE5D6 /* GamesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRow.swift; sourceTree = "<group>"; };
+		B04DA25A26E6421A00843524 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B0639D7426E2072700C4B40B /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		B07FED9926CFF76F006A91D3 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
 		B09FC9EB26E0D33500F8D50E /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				B09FC9EB26E0D33500F8D50E /* Favorites.swift */,
+				B04DA25A26E6421A00843524 /* ImagePicker.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				B0639D7526E2072700C4B40B /* Favorite.swift in Sources */,
 				B003A83E26CBF73200CAE5D6 /* MainView.swift in Sources */,
 				B07FED9A26CFF76F006A91D3 /* ApiServices.swift in Sources */,
+				B04DA25B26E6421A00843524 /* ImagePicker.swift in Sources */,
 				B003A85526CC052000CAE5D6 /* GamesViewModel.swift in Sources */,
 				B003A83C26CBF73200CAE5D6 /* DicodingSubmission2App.swift in Sources */,
 			);
