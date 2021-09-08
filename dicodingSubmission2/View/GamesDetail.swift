@@ -38,7 +38,7 @@ struct GamesDetail: View {
                             .font(.footnote)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 4)
-                            .background(Color("Navy"))
+                            .background(Color("Green"))
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
@@ -51,6 +51,7 @@ struct GamesDetail: View {
                     Text("Rating :")
                     Image(systemName: "star.fill")
                         .font(.system(size: 10))
+                        .foregroundColor(Color.orange)
                     Text("\(String(game.rating)) out of 5")
                 }
                 HStack {
@@ -88,9 +89,9 @@ struct GamesDetail: View {
                 }
             }, label: {
                 if favorites.contains(game) {
-                    Image(systemName: "heart.fill").foregroundColor(Color.red)
+                    Image(systemName: "heart.fill").foregroundColor(Color("Gray"))
                 } else {
-                    Image(systemName: "heart").foregroundColor(Color.white)
+                    Image(systemName: "heart").foregroundColor(Color("Gray"))
                 }
             })
         )
@@ -109,7 +110,7 @@ struct CardView: View {
     var body: some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 8)
-            shape.fill().foregroundColor(Color("Navy"))
+            shape.fill().foregroundColor(Color("Green"))
             Text(content)
                 .padding(4)
                 .font(.footnote)

@@ -14,7 +14,7 @@ struct About: View {
     @State private var showImagePicker = false
     @State private var image: Image?
     @State private var inputImage: UIImage?
-    @EnvironmentObject var favorites: Favorites
+    @EnvironmentObject var profile: Profile
     @State private var name: String = "Maitri Vira"
     @State private var job: String = "Learner at Apple Developer Academy"
     @State private var desc: String = "Hi, I'm Maitri Vira a Learner at Apple Developer Academy Batam. Currently focusing on mobile and web development."
@@ -22,49 +22,49 @@ struct About: View {
         ScrollView {
             VStack {
                 ZStack {
-                    if image != nil {
-                        image?
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150.0, height: 150.0)
-                            .clipShape(Circle())
-                            .padding(.bottom)
-                    } else {
-                        Image("maitri")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150.0, height: 150.0)
-                            .clipShape(Circle())
-                            .padding(.bottom)
-                    }
-                }
-                .onTapGesture {
-                    if edit {
-                        self.showImagePicker = true
-                    }
+                    Image("maitri")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150.0, height: 150.0)
+                        .clipShape(Circle())
+                        .padding(.bottom)
                 }
                 if edit {
                     TextField("Enter your name", text: $name)
                         .font(.body)
                         .padding(.horizontal, 5)
                         .accentColor(.gray)
+                        .frame(height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                               .stroke(Color("Green"), lineWidth: 3)
+                        )
                     TextField("Enter your job", text: $job)
                         .font(.body)
                         .padding(.horizontal, 5)
                         .accentColor(.gray)
+                        .frame(height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                               .stroke(Color("Green"), lineWidth: 3)
+                        )
                     TextEditor(text: $desc)
                         .font(.body)
                         .accentColor(.gray)
                         .frame(height: 200)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color("Green"), lineWidth: 3)
+                        )
                 } else {
-                    Text(favorites.getName())
+                    Text(profile.getName().isEmpty ? name : profile.getName())
                         .font(.title2)
                         .multilineTextAlignment(.center)
-                    Text(favorites.getJob())
+                    Text(profile.getJob().isEmpty ? job : profile.getJob())
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
-                    Text(favorites.getDesc())
+                    Text(profile.getDesc().isEmpty ? desc : profile.getDesc())
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -91,13 +91,13 @@ struct About: View {
             }),
             trailing: Button(action: {
                 if edit {
-                    favorites.addBio(name: name, job: job, desc: desc)
+                    profile.addBio(name: name, job: job, desc: desc)
                     edit = false
                 } else {
                     edit = true
-                    name = favorites.getName()
-                    job = favorites.getJob()
-                    desc = favorites.getDesc()
+                    name = profile.getName().isEmpty ? name : profile.getName()
+                    job = profile.getJob().isEmpty ? job : profile.getJob()
+                    desc = profile.getDesc().isEmpty ? desc : profile.getDesc()
                 }
             }, label: {
                 if edit {
@@ -112,13 +112,6 @@ struct About: View {
                 mode.wrappedValue.dismiss()
             }
         }))
-        .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
-            ImagePicker(image: self.$inputImage)
-        }
-    }
-    func loadImage() {
-        guard let inputImage = inputImage else {return}
-        image = Image(uiImage: inputImage)
     }
 }
 

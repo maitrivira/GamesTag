@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var gameData = GameViewModel()
+    @ObservedObject var gameData = GameViewModel()
     @ObservedObject var favorites = Favorites()
+    @ObservedObject var profile = Profile()
     init() {
         UITabBar.appearance().barTintColor = UIColor.init(named: "Navy")
     }
@@ -19,18 +20,19 @@ struct MainView: View {
                 .tabItem {
                     Label("Games", systemImage: "gamecontroller.fill")
                 }
-                .environmentObject(gameData)
             Favorite()
                 .tabItem {
                     Label("Favorite", systemImage: "heart.fill")
                 }
-            About(edit: false)
+            Search(viewModel: SearchViewModel())
                 .tabItem {
-                    Label("Profile", systemImage: "person.fill")
+                    Label("Search", systemImage: "magnifyingglass")
                 }
         }
         .accentColor(.white)
+        .environmentObject(gameData)
         .environmentObject(favorites)
+        .environmentObject(profile)
     }
 }
 

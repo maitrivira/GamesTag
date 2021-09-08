@@ -17,6 +17,7 @@ struct GamesRow: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 80, height: 80)
                 .clipShape(Circle())
+                .shadow(radius: 5)
             VStack(alignment: .leading, spacing: 0) {
                 Text(game.name)
                     .font(.title3)
@@ -30,6 +31,7 @@ struct GamesRow: View {
                     Spacer()
                     Image(systemName: "star.fill")
                         .font(.system(size: 10))
+                        .foregroundColor(Color.orange)
                     Text("\(String(game.rating))")
                         .font(.footnote)
                         .foregroundColor(.gray)
