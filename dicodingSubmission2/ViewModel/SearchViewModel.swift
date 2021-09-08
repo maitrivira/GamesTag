@@ -11,9 +11,8 @@ import SwiftUI
 
 class SearchViewModel: ObservableObject {
     @Published var searchTerm: String = ""
-    @Published public private(set) var games: [ResultsViewModel] = []
+    @Published public private(set) var games: [Results] = []
     private let searchServices: SearchServices = SearchServices()
-    private let artworkLoader: ArtworkLoader = ArtworkLoader()
     private var disposables = Set<AnyCancellable>()
     init() {
       $searchTerm
@@ -21,39 +20,11 @@ class SearchViewModel: ObservableObject {
         .store(in: &disposables)
     }
     private func loadGame(searchTerm: String) {
-        print("load game")
         games.removeAll()
-        artworkLoader.reset()
-        searchServices.loadGames(searchTerm: searchTerm) { game in
-            print("load game services")
-            game.forEach { self.appendGame(result: $0) }
-        }
-    }
-    private func appendGame(result: Results) {
-        let resultViewModel = ResultsViewModel(result: result)
-        DispatchQueue.main.async {
-            print("append game")
-            self.games.append(resultViewModel)
-        }
-        artworkLoader.loadArtwork(forGame: result) { image in
+        searchServices.loadGames(searchTerm: searchTerm) { [weak self] game in
             DispatchQueue.main.async {
-                print("append game loader")
-                resultViewModel.backgroundImage = image
+                self?.games = game
             }
         }
-    }
-}
-
-class ResultsViewModel: Identifiable, ObservableObject {
-    let id: Int
-    let name: String
-    let released: String
-    let rating: Double
-    @Published var backgroundImage: Image?
-    init(result: Results) {
-        self.id = result.id
-        self.name = result.name
-        self.released = result.released ?? ""
-        self.rating = result.rating
     }
 }

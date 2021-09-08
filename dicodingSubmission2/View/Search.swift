@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct Search: View {
     @ObservedObject var viewModel: SearchViewModel
@@ -18,8 +19,16 @@ struct Search: View {
               } else {
                 List(viewModel.games) { game in
                     ZStack {
-                        GameView(result: game)
+                        GamesRow(game: game)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        NavigationLink(destination:
+                            GamesDetail(game: game)
+                        ) {
+                            EmptyView()
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
+                    .listRowBackground(Color.clear)
                 }
                 .listStyle(PlainListStyle())
               }
@@ -27,42 +36,6 @@ struct Search: View {
             .navigationBarTitle("Game Search", displayMode: .inline)
         }
     }
-}
-
-struct GameView: View {
-  @ObservedObject var result: ResultsViewModel
-  var body: some View {
-    HStack {
-        ArtworkView(image: result.backgroundImage)
-        VStack(alignment: .leading) {
-            Text(result.name)
-            Text(result.released)
-                .font(.footnote)
-                .foregroundColor(.gray)
-        }
-    }
-    .padding()
-  }
-}
-
-struct ArtworkView: View {
-  let image: Image?
-  var body: some View {
-    ZStack {
-      if image != nil {
-        image?.resizable()
-      } else {
-        Color(.systemIndigo)
-        Image(systemName: "doc.fill")
-          .font(.largeTitle)
-          .foregroundColor(.white)
-      }
-    }
-    .frame(width: 50, height: 50)
-    .clipShape(Circle())
-    .shadow(radius: 5)
-    .padding(.trailing, 5)
-  }
 }
 
 struct EmptyStateView: View {

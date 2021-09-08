@@ -13,6 +13,7 @@ struct GamesRow: View {
     var body: some View {
         HStack {
             WebImage(url: URL(string: game.backgroundImage ?? ""))
+                .placeholder(Image(systemName: "photo"))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 80, height: 80)

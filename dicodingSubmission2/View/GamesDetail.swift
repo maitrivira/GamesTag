@@ -22,7 +22,9 @@ struct GamesDetail: View {
                 Text(game.name)
                     .font(.title2)
                     .bold()
+                    .multilineTextAlignment(.center)
                 WebImage(url: URL(string: game.backgroundImage ?? ""))
+                    .placeholder(Image(systemName: "photo"))
                     .resizable()
                     .frame(height: 200, alignment: .center)
             }
