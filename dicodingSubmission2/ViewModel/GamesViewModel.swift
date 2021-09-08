@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 class GameViewModel: ObservableObject {
     @Published var games: [Results] = []
