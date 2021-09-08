@@ -53,7 +53,7 @@ class ResultsViewModel: Identifiable, ObservableObject {
     init(result: Results) {
         self.id = result.id
         self.name = result.name
-        self.released = result.released
+        self.released = result.released ?? ""
         self.rating = result.rating
     }
 }

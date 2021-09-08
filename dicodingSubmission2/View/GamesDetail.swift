@@ -22,7 +22,7 @@ struct GamesDetail: View {
                 Text(game.name)
                     .font(.title2)
                     .bold()
-                WebImage(url: URL(string: game.backgroundImage))
+                WebImage(url: URL(string: game.backgroundImage ?? ""))
                     .resizable()
                     .frame(height: 200, alignment: .center)
             }
@@ -56,7 +56,7 @@ struct GamesDetail: View {
                 }
                 HStack {
                     Text("Released :")
-                    Text(game.released)
+                    Text(game.released ?? "")
                 }
                 Spacer()
                 Text("Tags")

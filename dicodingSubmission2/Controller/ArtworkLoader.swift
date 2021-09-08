@@ -11,7 +11,7 @@ import SwiftUI
 class ArtworkLoader {
   private var dataTasks: [URLSessionDataTask] = []
   func loadArtwork(forGame results: Results, completion: @escaping((Image?) -> Void)) {
-    guard let imageUrl = URL(string: results.backgroundImage) else {
+    guard let imageUrl = URL(string: results.backgroundImage ?? "") else {
       completion(nil)
       return
     }

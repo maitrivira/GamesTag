@@ -20,8 +20,11 @@ class SearchServices {
           completion([])
           return
         }
-        if let gameResponse = try? JSONDecoder().decode(GamesModel.self, from: data) {
+        do {
+            let gameResponse = try JSONDecoder().decode(GamesModel.self, from: data)
             completion(gameResponse.results)
+        } catch let err {
+            print(err)
         }
       }
       dataTask?.resume()
