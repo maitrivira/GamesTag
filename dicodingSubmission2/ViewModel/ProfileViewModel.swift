@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class Profile: ObservableObject {
+class ProfileViewModel: ObservableObject {
     let defaults = UserDefaults.standard
     let encoder = JSONEncoder()
     func addBio(name: String, job: String, desc: String) {

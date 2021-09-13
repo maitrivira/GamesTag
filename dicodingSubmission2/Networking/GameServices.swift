@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-class ApiServices {
-    func downloadGames(completion: @escaping (Result<GamesModel, Error>) -> Void) {
+class GameServices {
+    func loadGames(completion: @escaping (Result<GamesModel, Error>) -> Void) {
         let publicKey = "f5a9d29821874524a7c5e0f5db13ee14"
         let url = "https://api.rawg.io/api/games"
         var components = URLComponents(string: url)!
@@ -33,7 +33,6 @@ class ApiServices {
             } catch let error {
                 print("data error apiservice", error)
                 completion(.failure(error))
-
             }
         }.resume()
     }

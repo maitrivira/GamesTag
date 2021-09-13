@@ -10,9 +10,11 @@ import SDWebImageSwiftUI
 
 struct GamesRow: View {
     var game: Results
+    var gameFavorite: GameData
+    var type: String
     var body: some View {
         HStack {
-            WebImage(url: URL(string: game.backgroundImage ?? ""))
+            WebImage(url: URL(string: (type != "favorite" ? game.backgroundImage : gameFavorite.backgroundImage) ?? ""))
                 .placeholder(Image(systemName: "photo"))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -20,20 +22,20 @@ struct GamesRow: View {
                 .clipShape(Circle())
                 .shadow(radius: 5)
             VStack(alignment: .leading, spacing: 0) {
-                Text(game.name)
+                Text((type != "favorite" ? game.name : gameFavorite.name) ?? "")
                     .font(.title3)
                     .bold()
                 Spacer()
                     .frame(minHeight: 10, maxHeight: 10)
                 HStack {
-                    Text(game.released ?? "")
+                    Text((type != "favorite" ? game.released : gameFavorite.released) ?? "")
                         .font(.footnote)
                         .foregroundColor(.gray)
                     Spacer()
                     Image(systemName: "star.fill")
                         .font(.system(size: 10))
                         .foregroundColor(Color.orange)
-                    Text("\(String(game.rating))")
+                    Text("\(String(type != "favorite" ? game.rating : gameFavorite.rating))")
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }

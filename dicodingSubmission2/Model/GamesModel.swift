@@ -33,6 +33,10 @@ struct Genres: Identifiable, Codable {
     }
 }
 
+let dummyResults = Results(id: 100, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: [])
+
+let dummyGameData = GameData()
+
 let dummyData = [
     Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),
     Results(id: 1, name: "Contoh", released: "Contoh", rating: 1.1, backgroundImage: "Contoh", genres: [], tags: []),

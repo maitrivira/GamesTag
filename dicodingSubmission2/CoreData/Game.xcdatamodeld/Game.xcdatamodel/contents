@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GameData" representedClassName="GameData" syncable="YES" codeGenerationType="class">
+        <attribute name="backgroundImage" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="released" attributeType="String"/>
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameGenres" inverseName="gameData" inverseEntity="GameGenres"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameTags" inverseName="gameData" inverseEntity="GameTags"/>
+    </entity>
+    <entity name="GameGenres" representedClassName="GameGenres" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="gameData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GameData" inverseName="genres" inverseEntity="GameData"/>
+    </entity>
+    <entity name="GameTags" representedClassName="GameTags" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="gameData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GameData" inverseName="tags" inverseEntity="GameData"/>
+    </entity>
+    <elements>
+        <element name="GameData" positionX="-63" positionY="-9" width="128" height="134"/>
+        <element name="GameGenres" positionX="-54" positionY="0" width="128" height="74"/>
+        <element name="GameTags" positionX="-45" positionY="9" width="128" height="74"/>
+    </elements>
+</model>

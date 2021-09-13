@@ -6,29 +6,28 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct Search: View {
-    @ObservedObject var viewModel: SearchViewModel
+    @ObservedObject var searchViewModel: SearchViewModel
+    @State var isSearching: Bool = false
     var body: some View {
         NavigationView {
             VStack {
-              SearchBar(searchTerm: $viewModel.searchTerm)
-              if viewModel.games.isEmpty {
-                EmptyStateView()
+              SearchBar(searchText: $searchViewModel.searchTerm, isSearching: $isSearching)
+              if searchViewModel.games.isEmpty {
+                EmptyStateView(view: "search")
               } else {
-                List(viewModel.games) { game in
-                    ZStack {
-                        GamesRow(game: game)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                        NavigationLink(destination:
-                            GamesDetail(game: game)
-                        ) {
-                            EmptyView()
+                List {
+                    ForEach(searchViewModel.games, id: \.self.id) { game in
+                        ZStack {
+                            NavigationLink(destination: GamesDetail(game: game, gameData: dummyGameData, type: "search")) {
+                                GamesRow(game: game, gameFavorite: dummyGameData, type: "search")
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .listRowBackground(Color.clear)
                     }
-                    .listRowBackground(Color.clear)
                 }
                 .listStyle(PlainListStyle())
               }
@@ -38,53 +37,62 @@ struct Search: View {
     }
 }
 
-struct EmptyStateView: View {
+struct SearchBar: View {
+    @Binding var searchText: String
+    @Binding var isSearching: Bool
     var body: some View {
-        VStack {
-            Spacer()
-            Image(systemName: "doc.fill")
-                .font(.system(size: 60))
-                .padding(.bottom)
-                .foregroundColor(Color("Green"))
-            Text("Start search for game")
-                .font(.title3)
-                .foregroundColor(Color("Green"))
-            Spacer()
+        HStack {
+            HStack {
+                TextField("Search", text: $searchText)
+                    .padding(.leading, 35)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .textCase(.lowercase)
+            }
+            .padding(10)
+            .background(Color(.systemGray5))
+            .cornerRadius(8)
+            .padding(.horizontal)
+            .onTapGesture {
+                isSearching = true
+                print($searchText)
+            }
+            .overlay(
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    Spacer()
+                    if isSearching {
+                        Button(action: {
+                            searchText = ""
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .padding(.vertical)
+                        })
+                    }
+                }.padding(.horizontal, 32)
+                .foregroundColor(.gray)
+            )
+            if isSearching {
+                Button(action: {
+                    isSearching = false
+                    searchText = ""
+                    UIApplication.shared.endEditing()
+                }, label: {
+                    Text("Cancel")
+                        .foregroundColor(Color("Gray"))
+                        .padding(.trailing)
+                        .padding(.leading, -12)
+                })
+                .transition(.move(edge: .trailing))
+                .animation(.spring())
+            }
         }
-        .padding()
-    }
-}
-
-struct SearchBar: UIViewRepresentable {
-    typealias UIViewType = UISearchBar
-    @Binding var searchTerm: String
-    func makeUIView(context: Context) -> UISearchBar {
-      let searchBar = UISearchBar(frame: .zero)
-      searchBar.delegate = context.coordinator
-      searchBar.searchBarStyle = .minimal
-      searchBar.placeholder = "Type game name..."
-      return searchBar
-    }
-    func updateUIView(_ uiView: UISearchBar, context: Context) {
-    }
-    func makeCoordinator() -> SearchBarCoordinator {
-      return SearchBarCoordinator(searchTerm: $searchTerm)
-    }
-    class SearchBarCoordinator: NSObject, UISearchBarDelegate {
-      @Binding var searchTerm: String
-      init(searchTerm: Binding<String>) {
-        self._searchTerm = searchTerm
-      }
-      func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("button clicked")
-        searchTerm = searchBar.text ?? ""
-        UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true)
-      }
+        .padding(.top, 10)
     }
 }
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
-        Search(viewModel: SearchViewModel())
+        Search(searchViewModel: SearchViewModel())
     }
 }

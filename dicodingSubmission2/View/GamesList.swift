@@ -18,9 +18,9 @@ struct GamesList: View {
             VStack {
                 if gameData.games.isEmpty {
                     List {
-                        ForEach(dummyData) { data in
+                        ForEach(dummyData, id: \.self.id) { data in
                             ZStack {
-                                GamesRow(game: data)
+                                GamesRow(game: data, gameFavorite: dummyGameData, type: "home")
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -31,16 +31,11 @@ struct GamesList: View {
                     .redacted(reason: .placeholder)
                 } else {
                     List {
-                        ForEach( gameData.games.filter {
-                            searchText.isEmpty || $0.name.lowercased().contains(searchText)
-                        }) { game in
+                        ForEach(gameData.games, id: \.self.id) { game in
                             ZStack {
-                                GamesRow(game: game)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                                NavigationLink(destination:
-                                    GamesDetail(game: game)
-                                ) {
-                                    EmptyView()
+                                NavigationLink(destination: GamesDetail(game: game, gameData: dummyGameData, type: "home")) {
+                                    GamesRow(game: game, gameFavorite: dummyGameData, type: "home")
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }

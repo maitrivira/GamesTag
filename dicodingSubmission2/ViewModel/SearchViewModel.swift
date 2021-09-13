@@ -11,7 +11,7 @@ import SwiftUI
 
 class SearchViewModel: ObservableObject {
     @Published var searchTerm: String = ""
-    @Published public private(set) var games: [Results] = []
+    @Published public var games: [Results] = []
     private let searchServices: SearchServices = SearchServices()
     private var disposables = Set<AnyCancellable>()
     init() {
@@ -20,8 +20,9 @@ class SearchViewModel: ObservableObject {
         .store(in: &disposables)
     }
     private func loadGame(searchTerm: String) {
+        print(searchTerm)
         games.removeAll()
-        searchServices.loadGames(searchTerm: searchTerm) { [weak self] game in
+        searchServices.loadSearch(searchTerm: searchTerm) { [weak self] game in
             DispatchQueue.main.async {
                 self?.games = game
             }

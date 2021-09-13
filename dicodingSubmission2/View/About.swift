@@ -14,7 +14,7 @@ struct About: View {
     @State private var showImagePicker = false
     @State private var image: Image?
     @State private var inputImage: UIImage?
-    @EnvironmentObject var profile: Profile
+    @EnvironmentObject var profile: ProfileViewModel
     @State private var name: String = "Maitri Vira"
     @State private var job: String = "Learner at Apple Developer Academy"
     @State private var desc: String = "Hi, I'm Maitri Vira a Learner at Apple Developer Academy Batam. Currently focusing on mobile and web development."
@@ -28,6 +28,7 @@ struct About: View {
                         .frame(width: 150.0, height: 150.0)
                         .clipShape(Circle())
                         .padding(.bottom)
+                        .shadow(radius: 5)
                 }
                 if edit {
                     TextField("Enter your name", text: $name)
@@ -76,11 +77,7 @@ struct About: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: Button(action: {
-                if edit {
-                    edit = false
-                } else {
-                    mode.wrappedValue.dismiss()
-                }
+                edit ? edit = false : mode.wrappedValue.dismiss()
             }, label: {
                 if edit {
                     Text("Cancel")

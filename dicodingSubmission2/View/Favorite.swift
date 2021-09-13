@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct Favorite: View {
-    @EnvironmentObject var favorite: Favorites
+    @EnvironmentObject var favorite: FavoriteViewModel
     var body: some View {
         NavigationView {
             VStack {
-                if favorite.getData().isEmpty {
-                    Text("No Data")
+                if favorite.gameData.isEmpty {
+                    EmptyStateView(view: "favorite")
                 } else {
                     List {
-                        ForEach(favorite.getData()) { data in
+                        ForEach(favorite.gameData) { data in
                             ZStack {
-                                GamesRow(game: data)
-                                NavigationLink(destination:
-                                    GamesDetail(game: data)
-                                ) {
-                                    EmptyView()
+                                NavigationLink(destination: GamesDetail(game: dummyResults, gameData: data, type: "favorite")) {
+                                    GamesRow(game: dummyResults, gameFavorite: data, type: "favorite")
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -33,6 +30,9 @@ struct Favorite: View {
                 }
             }
             .navigationBarTitle(Text("Favorite"), displayMode: .inline)
+        }
+        .onAppear {
+            favorite.getData()
         }
     }
 }

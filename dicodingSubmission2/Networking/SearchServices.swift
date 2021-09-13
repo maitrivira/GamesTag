@@ -9,7 +9,7 @@ import Foundation
 
 class SearchServices {
     private var dataTask: URLSessionDataTask?
-    func loadGames(searchTerm: String, completion: @escaping(([Results]) -> Void)) {
+    func loadSearch(searchTerm: String, completion: @escaping(([Results]) -> Void)) {
       dataTask?.cancel()
       guard let url = buildUrl(forTerm: searchTerm) else {
         completion([])

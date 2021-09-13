@@ -9,12 +9,12 @@ import SwiftUI
 
 class GameViewModel: ObservableObject {
     @Published var games: [Results] = []
-    let apiServices = ApiServices()
+    let gameServices = GameServices()
     init() {
         fetchData()
     }
     func fetchData() {
-        apiServices.downloadGames { [weak self] (result) in
+        gameServices.loadGames { [weak self] (result) in
             switch result {
             case .success(let listOf):
                 self?.games = listOf.results
