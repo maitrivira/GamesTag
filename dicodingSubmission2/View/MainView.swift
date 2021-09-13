@@ -12,6 +12,7 @@ struct MainView: View {
     @ObservedObject var profile = ProfileViewModel()
     @ObservedObject var favoritesViewModel = FavoriteViewModel()
     @ObservedObject var gameDetail = GameDetailViewModel()
+    @ObservedObject var searchViewModel = SearchViewModel()
     init() {
         UITabBar.appearance().barTintColor = UIColor.init(named: "Navy")
     }
@@ -25,7 +26,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Favorite", systemImage: "heart.fill")
                 }
-            Search(searchViewModel: SearchViewModel())
+            Search()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
@@ -35,6 +36,7 @@ struct MainView: View {
         .environmentObject(profile)
         .environmentObject(favoritesViewModel)
         .environmentObject(gameDetail)
+        .environmentObject(searchViewModel)
     }
 }
 

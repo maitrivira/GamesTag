@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Search: View {
-    @ObservedObject var searchViewModel: SearchViewModel
+    @EnvironmentObject var searchViewModel: SearchViewModel
     @State var isSearching: Bool = false
     var body: some View {
         NavigationView {
@@ -93,6 +93,6 @@ struct SearchBar: View {
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
-        Search(searchViewModel: SearchViewModel())
+        Search()
     }
 }

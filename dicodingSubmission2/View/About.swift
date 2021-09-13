@@ -10,11 +10,11 @@ import SwiftUI
 struct About: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @GestureState private var dragOffset = CGSize.zero
+    @EnvironmentObject var profile: ProfileViewModel
     @State var edit: Bool
     @State private var showImagePicker = false
     @State private var image: Image?
     @State private var inputImage: UIImage?
-    @EnvironmentObject var profile: ProfileViewModel
     @State private var name: String = "Maitri Vira"
     @State private var job: String = "Learner at Apple Developer Academy"
     @State private var desc: String = "Hi, I'm Maitri Vira a Learner at Apple Developer Academy Batam. Currently focusing on mobile and web development."

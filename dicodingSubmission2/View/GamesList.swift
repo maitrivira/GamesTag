@@ -9,10 +9,10 @@ import SwiftUI
 
 struct GamesList: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var gameData: GameViewModel
     @State var searchText = ""
     @State var isSearching = false
     @State var showPageView = false
-    @EnvironmentObject var gameData: GameViewModel
     var body: some View {
         NavigationView {
             VStack {

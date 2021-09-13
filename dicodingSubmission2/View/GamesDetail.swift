@@ -13,7 +13,7 @@ struct GamesDetail: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @GestureState private var dragOffset = CGSize.zero
     @EnvironmentObject var detailViewModel: GameDetailViewModel
-    @State var favorite = FavoriteViewModel()
+    @EnvironmentObject var favorite: FavoriteViewModel
     @State var selected: Bool = false
     var game: Results
     var gameData: GameData
@@ -112,15 +112,12 @@ struct GamesDetail: View {
             }
         }
         .onAppear {
-            favorite.getData()
             if type == "favorite" {
                 favorite.getGenres(of: gameData.name ?? "")
                 favorite.getTags(of: gameData.name ?? "")
             }
             detailViewModel.id = type != "favorite" ? game.id : Int(gameData.id)
-        }
-        .onDisappear {
-            favorite.getData()
+            checkIcon()
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -133,9 +130,10 @@ struct GamesDetail: View {
                     .foregroundColor(Color.white)
             }),
             trailing: Button(action: {
-                if favorite.containsId(type != "favorite" ? Int32(game.id) : gameData.id) {
+                if selected {
                     favorite.deleteData(of: type != "favorite" ? Int32(game.id) : gameData.id)
                     selected = false
+                    type == "favorite" ? self.mode.wrappedValue.dismiss() : nil
                 } else {
                     favorite.addData(data: game)
                     selected = true
@@ -145,7 +143,8 @@ struct GamesDetail: View {
                     Image(systemName: "heart.fill").foregroundColor(Color("Gray"))
                 } else {
                     Image(systemName: "heart").foregroundColor(Color("Gray"))
-                }            })
+                }
+            })
         )
         .navigationBarTitle("Detail")
         .environment(\.locale, Locale(identifier: "id"))
@@ -154,6 +153,13 @@ struct GamesDetail: View {
                 self.mode.wrappedValue.dismiss()
             }
         }))
+    }
+    func checkIcon() {
+        if favorite.containsId(type != "favorite" ? Int32(game.id) : gameData.id) {
+            selected = true
+        } else {
+            selected = false
+        }
     }
 }
 
