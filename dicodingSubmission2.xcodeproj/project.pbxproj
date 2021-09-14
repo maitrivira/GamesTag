@@ -138,8 +138,7 @@
 		B003A84A26CBF7A600CAE5D6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B003A83B26CBF73200CAE5D6 /* DicodingSubmission2App.swift */,
-				B003A83D26CBF73200CAE5D6 /* MainView.swift */,
+				B072054D26F04D920041E287 /* Base */,
 				B072054C26F04D580041E287 /* About */,
 				B072054B26F04D510041E287 /* Detail */,
 				B072054A26F04CB40041E287 /* List */,
@@ -230,6 +229,15 @@
 				B003A85626CC076000CAE5D6 /* About.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		B072054D26F04D920041E287 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B003A83B26CBF73200CAE5D6 /* DicodingSubmission2App.swift */,
+				B003A83D26CBF73200CAE5D6 /* MainView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		B07FED9826CFF500006A91D3 /* Networking */ = {
