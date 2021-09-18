@@ -8,7 +8,7 @@
 
 | Home Screen                                    | Detail Screen                                  | About Screen                                    | Search Screen                                   |
 | ------------------------------------------------ | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| ![Home Screen](/Screenshots/Home-screen.png) | ![Detail Screen](/Screenshots/Detail-screen.png) | ![About Screen](/Screenshots/Profile-screen.png) | ![Search Screen](/Screenshots/Search-screen.png) |
+| ![Home Screen](/Screenshots/Home-screen.png) | ![Detail Screen](/Screenshots/Detail-screen.png) | ![Favorite Screen](/Screenshots/Favorite-screen.png) | |![About Screen](/Screenshots/Profile-screen.png) | ![Search Screen](/Screenshots/Search-screen.png) |
 
 ## Icon Licenses
 
