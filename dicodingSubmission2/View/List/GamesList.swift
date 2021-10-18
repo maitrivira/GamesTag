@@ -45,7 +45,6 @@ struct GamesList: View {
                     .listStyle(PlainListStyle())
                 }
             }
-            .background(Color("Navy"))
             .navigationBarTitle("Games List", displayMode: .inline)
             .onAppear {
                 UITableViewCell.appearance().selectionStyle = .none

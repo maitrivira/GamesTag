@@ -13,8 +13,15 @@ struct MainView: View {
     @ObservedObject var favoritesViewModel = FavoriteViewModel()
     @ObservedObject var gameDetail = GameDetailViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
+    let coloredNavAppearance = UINavigationBarAppearance()
     init() {
         UITabBar.appearance().barTintColor = UIColor.init(named: "Navy")
+        coloredNavAppearance.configureWithOpaqueBackground()
+        coloredNavAppearance.backgroundColor = UIColor.init(named: "Navy")
+        coloredNavAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredNavAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = coloredNavAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredNavAppearance
     }
     var body: some View {
         TabView {
@@ -37,17 +44,6 @@ struct MainView: View {
         .environmentObject(favoritesViewModel)
         .environmentObject(gameDetail)
         .environmentObject(searchViewModel)
-    }
-}
-
-extension UINavigationController {
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        let standardApperance = UINavigationBarAppearance()
-        standardApperance.backgroundColor = UIColor(named: "Navy")
-        standardApperance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationBar.standardAppearance = standardApperance
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
 }
 
